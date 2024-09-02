@@ -4,9 +4,9 @@ import 'package:flutter_hero_animation/temp_db.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HotelItem extends StatefulWidget {
-  final Hotel hotel;  //temp_db.dart file e Hotel(id1-id2) pojonto joto index thakbe,
-                  // sb gulo index wise alada alada sb gulo ekhane powa jabe,ekhane ekta hotel object nibo & constructor e dibo
-  const HotelItem({super.key, required this.hotel});  // ei je required this.hotel eta constructor e dilam
+  final Hotel hotel;  
+                  
+  const HotelItem({super.key, required this.hotel});  
 
   @override
   State<HotelItem> createState() => _HotelItemState();
@@ -16,80 +16,80 @@ class _HotelItemState extends State<HotelItem> {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(      //padding dile 1ta hotel space then arekta hotel er details evabe thakbe,char pash theke space thakbe
+    return Padding(      
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: () {      //image e click korle tap hobe,2nd page e jower jonno
+        onTap: () {      
           Navigator.pushNamed(context, SecondPage.routeName, arguments: widget.hotel);
           },
-        child: Card(                              //ekhane card widget nibo
-          elevation: 10,                         //shadow bariye deyar jonno
-          shape: RoundedRectangleBorder(        // card er charpashe round dibo tai shape use korbo,
-                                               // card er defult background clr hocche white
+        child: Card(                              
+          elevation: 10,                         
+          shape: RoundedRectangleBorder(        
+                                               
             borderRadius: BorderRadius.circular(16)
           ),
-          child: Column(   //card er child hisabe jehetu sb upore niche ache image,Listtile,text,tar mane amak ekhon 1ta column dite hobe
+          child: Column(   
 
             children: [
-              Stack(      //column er 1st child hocche image,image k 1ta stack er modhe rakhte hobe,karon image er age 1ta icon ache
+              Stack(      
                 children: [
-                   ClipRRect(     // just card er uporer matha katte (round) korte eta use korbo
+                   ClipRRect(     
                    borderRadius: BorderRadius.only(
                    topRight: Radius.circular(16),
                    topLeft: Radius.circular(16),
                    ),
-                       child: Hero(    //transition annimation korar jonno,Hero tag always unic hote hoye
-                         tag: widget.hotel.id,     //hero widget e ei tag mandatory, 5ta image e hero tag er modhe ache,unic id
-                         child: Image.network(    // ei image widget ta k wrap with widget kore rakhbo ClipRRect e,
-                                                  // karon card er uporer matha katte (round) korte eta use korbo
+                       child: Hero(    
+                         tag: widget.hotel.id,     
+                         child: Image.network(    
+                                                  
                            widget.hotel.image,
                            width: double.maxFinite,
                            height: 200,
-                           fit: BoxFit.cover,   //cover ta dile width,heigh zoom kore ney
+                           fit: BoxFit.cover,   
                          ),
                        ),
                    ),
                     Positioned(
-                      right: 0,   //card er icon right e thakbe tai
+                      right: 0,   
                       child: IconButton(
-                          icon: Icon(widget.hotel.favorite ? Icons.favorite: Icons.favorite_border), //jar icon hobe depend korteche hotel
-                                                     //ki favorite kora ache naki tar upor
+                          icon: Icon(widget.hotel.favorite ? Icons.favorite: Icons.favorite_border), 
+                                                     
                           onPressed: () {},
                         ),
                     ),
                 ],
               ),
               ListTile(
-                title: Text(   //title e show korbe hotel er name
+                title: Text(   
                   widget.hotel.name,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
                 ),
-                trailing: Text(  //hotel er price show korar jonno
-                  '\$${widget.hotel.price}',   //$$ diye price show kore
+                trailing: Text(  
+                  '\$${widget.hotel.price}',   
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
                 subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,  //star gulo ke left e anar jonno
+                  crossAxisAlignment: CrossAxisAlignment.start,  
                   children: [
-                    Text(   //hotel ar address show korar jonno
+                    Text(  
                       widget.hotel.address
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,  //cdenter theke jate suru na hoy tai ,jodio by defult start e thake eta deyar poyojon nai
+                      mainAxisAlignment: MainAxisAlignment.start,  
                       children: [
-                        RatingBar.builder(    //search pub.dev then flutter_rating_bar theke code copy
-                          itemSize: 20,       // star er size choto korar jonno
-                          ignoreGestures: true, //eta use e rating e rating full,half mane rating deya off hoye jabe
+                        RatingBar.builder(    
+                          itemSize: 20,       
+                          ignoreGestures: true, 
                           initialRating: 3,
                           minRating: 1,
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 0), //4.0 ke 0 kore dilam star gulor space komanor jonno
+                          itemPadding: EdgeInsets.symmetric(horizontal: 0), 
                           itemBuilder: (context, value) {
                             return Icon(Icons.star, color: Colors.amber,);
                           },
@@ -97,8 +97,8 @@ class _HotelItemState extends State<HotelItem> {
 
                           },
                         ),
-                        SizedBox(width: 5,), //star & 80 review's er modhe space deyar jonno
-                        Text('80 reviews'), //review show korar jonno,padding dile val lagbe tai card er age padding dibo
+                        SizedBox(width: 5,), 
+                        Text('80 reviews'), 
                       ],
                     ),
                   ],
