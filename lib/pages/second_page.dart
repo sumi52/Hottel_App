@@ -11,45 +11,44 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
-  late Hotel hotel; //hotel je niye asbo seta k recive korar jonno
+  late Hotel hotel; 
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
-    hotel = ModalRoute.of(context)!.settings.arguments as Hotel;  //hotel gulo 2nd page e show korar jonno dite hobe
+    hotel = ModalRoute.of(context)!.settings.arguments as Hotel;  
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // appBar: AppBar(title: Text(hotel.name),),   //selvers widget nibo tai appBar k baad diye dilam
+     // appBar: AppBar(title: Text(hotel.name),),   
 
-      body: CustomScrollView(       //eta ekta scroller view,scroll behaviour ta custom korte parbo
-        slivers: [        //ekhon cacchi 2ta widget er modhe ekta communicate korte
-          SliverAppBar(           //slivers er 1st child hocche sliverAppBar
-           // pinned: true,         //texta automatically animate hoye jacche,eta na dile upore uthle sathe sthe e AppBar chole asbe
-            floating: true,       //uprer dike ektu scroll korle e jani AppBar ta chole ase,beshikhun jate wait korte na hoy e
-                                 // jonno use kora, eta k paralize effect
-            expandedHeight: 350,  //image er height ta dibo
-            flexibleSpace: FlexibleSpaceBar(   //flexibleSpace e ekta widget dite hobe
-              title: Text(hotel.name),      //eta deyate hotel gulor name show hobe
-              background:  Hero(          //je image e je Hero item e click kore 2nd page e jacchi 2tar e Hero tag jeno soman hoy, ei tag ta
-                tag: hotel.id,            //deyar age je annimation ta hocche seta piuro page tai zooming & zoom out hocche,but ei tag er jonno
-                                             // ekhon je hotel e click korbo just oita e zooming & zoom out hobe
+      body: CustomScrollView(       
+        slivers: [        
+          SliverAppBar(          
+           // pinned: true,         
+            floating: true,       
+            expandedHeight: 350,  
+            flexibleSpace: FlexibleSpaceBar(   
+              title: Text(hotel.name),      
+              background:  Hero(          
+                tag: hotel.id,           
+                                          
                 child: Image.network(
-                  hotel.image,             //hotel.item file theke image.netwok copy korbo just widget .(dot) ta baad dibo
+                  hotel.image,             
                   width: double.maxFinite,
                   height: 350,
-                  fit: BoxFit.cover,   //cover ta dile width,heigh zoom kore ney
+                  fit: BoxFit.cover,   
                 ),
               ),
             ),
           ),
 
-          SliverList(          //slivers er 2nd child hocche sliverList
-            delegate: SliverChildListDelegate([      //children ta ekta delegate property er madhome dite hoy,([])ekhane list of widget
-              ListTile(   //evar save dile ager moto hoye jabe
+          SliverList(         
+            delegate: SliverChildListDelegate([      
+              ListTile(  
                 title: Text(hotel.name),
                 subtitle: Text(hotel.address),
                 trailing: Text('\$${hotel.price}'),
@@ -68,17 +67,16 @@ class _SecondPageState extends State<SecondPage> {
     );
   }
 
-  ListView buildListView() {   //ekta aladha method baniye rakhlam
-    return ListView(  //boro page hole scrolling korte hobe tar jonno SingleChildScrolling column ba ListView nite hobe,but amra ListView nibo
+  ListView buildListView() {   
+    return ListView(  
       children: [
-        Hero(            //je image e je Hero item e click kore 2nd page e jacchi 2tar e Hero tag jeno soman hoy, ei tag ta deyar age je
-          tag: hotel.id,  //annimation ta hocche seta piuro page tai zooming & zoom out hocche,but ei tag er jonno
-                          // ekhon je hotel e click korbo just oita e zooming & zoom out hobe
+        Hero(            
+          tag: hotel.id, 
           child: Image.network(
-            hotel.image,       //hotel.item file theke image.netwok copy korbo just widget .(dot) ta baad dibo
+            hotel.image,       
             width: double.maxFinite,
             height: 350,
-            fit: BoxFit.cover,   //cover ta dile width,heigh zoom kore ney
+            fit: BoxFit.cover,   
           ),
         ),
         ListTile(
